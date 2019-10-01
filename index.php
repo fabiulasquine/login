@@ -15,9 +15,9 @@
 
     <title>Sistema de Login</title>
     <style>
-        #alert,
+        #alerta,
         #caixaSenha,
-        #CaixaRegistro {
+        #caixaRegistro {
             display: none;
         }
     </style>
@@ -37,13 +37,13 @@
         </section>
         <!-- Formulário de Login  -->
         <section class="row">
-            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="CaixaLogin">
-                <h2>
+            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaLogin">
+                <h2 class="text-center mt-2">
                     Entrar no Sistema
                 </h2>
                 <form action="#" method="post" class="p-2" id="formLogin">
                     <div class="form-group">
-                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nume de Usuário" class="from-control">
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome de Usuário" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <p class="text-center">
                             Novo usuário? <a href="#" id="btnRegistrarNovo">
-                                Registre-se aqui!
+                                Registre-se aqui!</a>
                         </p>
                     </div>
                 </form>
@@ -102,7 +102,7 @@
                     <div class="form-group">
                         <p class="text-center">
                             Ja registrado? <a href="#" id="btnJaRegistrado">
-                                Entrar por aqui.
+                                Entrar por aqui.</a>
                         </p>
                     </div>
                 </form>
@@ -111,7 +111,7 @@
         <!-- Fim da seção de recuperação de senha -->
         <section class="row mt-5">
             <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaRegistro">
-                <h2 class="text-center mt-2">Registe-se aqui</h2>
+                <h2 class="text-center mt-2">Registre-se aqui</h2>
                 <form action="#" method="post" class="p-2" id="formRegistro">
                     <div class="form-group">
                         <input type="text" name="nomecCmpleto" id="nomeCompleto" class="form-control" placeholder="Nome Completo">
@@ -175,7 +175,7 @@
                 $("#caixaSenha").show(); //Mostrar nova Senha
             });
 
-            $("#btnJaRegistrar").click(function() {
+            $("#btnJaRegistrado").click(function() {
                 $("#caixaSenha").hide(); //ocultar
                 $("#caixaLogin").show(); //Mostrar
             });
@@ -184,6 +184,11 @@
             $("#btnRegistrarNovo").click(function() {
                 $("#caixaLogin").hide(); //ocultar
                 $("#caixaRegistro").show(); //Mostrar
+            });
+
+            $("btnJaRegistrado2").click(function() {
+                $("#caixaRegistro").hide(); //ocultar
+                $("#caixaLogin").show(); //Mostrar
             });
 
         });
