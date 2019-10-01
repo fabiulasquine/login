@@ -190,7 +190,6 @@
                 $("#caixaRegistro").hide(); //ocultar
                 $("#caixaLogin").show(); //Mostrar
             });
-
         });
     </script>
 </body>
