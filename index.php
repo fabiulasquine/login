@@ -33,7 +33,7 @@
             <div class="col-lg-4 offset-lg-4" id="alerta">
                 <div class="alert alert-success text-center">
                     <strong class="resultado">
-                        Alo Ha Thurmaaaaaaaa
+                        Olá
                     </strong>
 
                 </div>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="::Entrar::" name="btnEntrar" id="btnEntrar" class="btn btn-primary btn-block">
+                        <input type="submit" value="Entrar" name="btnEntrar" id="btnEntrar" class="btn btn-primary btn-block">
                     </div>
 
                     <div class="form-group">
@@ -108,7 +108,7 @@
 
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="::Gerar::" name="btnGerar" id="btnGerar" class="btn btn-primary btn-block">
+                    <input type="submit" value="Gerar" name="btnGerar" id="btnGerar" class="btn btn-primary btn-block">
                 </div>
 
                 <div class="form-group">
@@ -163,7 +163,7 @@
                             </label>
 
                             <div class="form-group">
-                                <input type="submit" value="::Registrar::" name="btnRegistrar" id="btnRegistrar" class="btn btn-primary btn-block">
+                                <input type="submit" value="Registrar" name="btnRegistrar" id="btnRegistrar" class="btn btn-primary btn-block">
                             </div>
                             <div class="form-group">
                                 <p class="text-center">
@@ -242,6 +242,35 @@
                 $("#caixaRegistro").hide(); //ocultar
                 $("#caixaLogin").show(); //Mostrar
             });
+
+            //Cadastro de novo usuario
+            $("#btnRegistrar").click(function(e) {
+                if(document
+                .querySelector("#formRegistro")
+                .checkValidity()){
+                e.preventDefault();//Não abrir outra página
+                //envio dos dados via Ajax
+                $.ajax({
+                    url: 'recebe_dados.php',
+                    method: 'post', 
+                    data: $("#formRegistro").serialize()+'&action=cadastro',
+                    success:function(resposta){
+                        $("#alerta").show();
+                        $(".resultado").html(resposta);
+                    }
+                })
+            }
+        return true;
+            });
+            //login
+            $("#btnEntrar").click(function(e) {
+
+            });
+            //recuperação de senha
+            $("#btnGerar").click(function(e) {
+
+            });
+
         });
 
         /*
