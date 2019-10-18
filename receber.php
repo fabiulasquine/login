@@ -3,7 +3,7 @@
 
 //verifica se o método get está enviando dados
 if (isset($_GET['nome'])) {
-echo "\n<h1>Envio de dados método <em>GET</em></h1>";
+    echo "\n<h1>Envio de dados método <em>GET</em></h1>";
 
     echo "\n<pre>\n";
     print_r($_GET); #Array
