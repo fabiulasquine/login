@@ -53,11 +53,11 @@
                 <?= $nomeCompleto ?>
             </h2>
             <h2 class="text-center">
-                $emailUsuario
+                Email do Usuario:
                 <a href="mailto:<?=$emailUsuario?>"><?=$emailUsuario?></a>
             </h2>
             <h2 class="text-center">
-                Resgistrado em: <?= $dataCriado?>
+                Resgistrado em: <?= $dataCriado ?>
                 
             </h2>
         </div>
