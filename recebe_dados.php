@@ -6,7 +6,8 @@ session_start();
 // Conexão com o Banco de dados
 require_once 'configBD.php';
 
-function verificar_entrada($entrada){
+function verificar_entrada($entrada)
+{
     //filtrando a entrada
     $saida = htmlspecialchars($entrada);
     $saida = stripcslashes($saida);
@@ -60,8 +61,14 @@ if (isset($_POST['action'])) {
                 $sql = $connect->prepare("INSERT into usuario (nomeUsuario, 
                 nomeCompleto, emailUsuario, senhaDoUsuario, dataCriado) 
                 values(?, ?, ?, ?, ?)");
-                $sql->bind_param("sssss", $nomeDoUsuario, $nomeCompleto, 
-                $emailUsuario, $senhaCodificada, $dataCriado);
+                $sql->bind_param(
+                    "sssss",
+                    $nomeDoUsuario,
+                    $nomeCompleto,
+                    $emailUsuario,
+                    $senhaCodificada,
+                    $dataCriado
+                );
                 if ($sql->execute()) {
                     echo "<p class='text-success'>Usuário cadastrado com sucesso!</p>";
                 } else {
@@ -83,29 +90,26 @@ if (isset($_POST['action'])) {
 
         $busca = $sql->fetch();
 
-        if($busca != null){
+        if ($busca != null) {
             $_SESSION['nomeDoUsuario'] = $nomeUsuario;
-            if(!empty($_POST['lembrar'])){
+            if (!empty($_POST['lembrar'])) {
                 //Se lembrar não estiver vazio!
                 //ou seja, a pessoa quer ser lembrada!
-                setcookie("nomeDoUsuario", $nomeUsuario, time()+(60*60*24*30));
-                setcookie("senhaDoUsuario", $senhaUsuario, time()+(60*60*24*30));
-            }else{
+                setcookie("nomeDoUsuario", $nomeUsuario, time() + (60 * 60 * 24 * 30));
+                setcookie("senhaDoUsuario", $senhaUsuario, time() + (60 * 60 * 24 * 30));
+            } else {
                 //A pessoa não quer ser lembrada 
-                setcookie("nomeDoUsuario","");
-                setcookie("senhaDoUsuario","");
+                setcookie("nomeDoUsuario", "");
+                setcookie("senhaDoUsuario", "");
             }
 
             echo "ok";
-            
-
-        }else{
+        } else {
             echo "<p class='text-danger'>";
             echo "falhou a entrada no sistema. Nome de usuário ou senha inválida";
-            echo"</p>";
+            echo "</p>";
             exit();
         }
-
     } else if ($_POST['action'] == 'senha') {
         //Senão, teste se ação é recuperar senha
         echo "\n<p>senha</p>";

@@ -18,7 +18,8 @@
     <style>
         #alerta,
         #caixaSenha,
-        #caixaRegistro {
+        #caixaRegistro,
+        #caixaMostrar {
 
             display: none;
         }
@@ -49,32 +50,24 @@
                 </h2>
                 <form action="#" method="post" class="p-2" id="formLogin">
                     <div class="form-group">
-                        <input type="text" name="nomeUsuario" 
-                        id="nomeUsuario" placeholder="Nome Usuário" 
-                        class="form-control" required minlength="5"
-                        value="<?= isset($_COOKIE['nomeDoUsuario'])?$_COOKIE['nomeDoUsuario']:"";
-                        ?>"
-                        >
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome Usuário" class="form-control" required minlength="5" value="<?= isset($_COOKIE['nomeDoUsuario']) ? $_COOKIE['nomeDoUsuario'] : "";
+                                                                                                                                                                ?>">
 
 
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="senhaUsuario" 
-                        id="senhaUsuario" placeholder="Senha" class="form-control" 
-                        required minlength="6"
-                        value="<?= isset($_COOKIE['senhaDoUsuario'])?$_COOKIE['senhaDoUsuario']:"";
-                        ?>">
+                        <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" required minlength="6" value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : "";
+                                                                                                                                                            ?>">
 
                     </div>
 
                     <div class="form-group mt-3">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="lembrar" 
-                            id="lembrar" class="custom-control-input"
-                            <?= isset($_COOKIE['senhaDoUsuario'])?"chcked":""
-                            ?>>
-                            
+                            <input type="checkbox" name="lembrar" id="lembrar" class="custom-control-input" 
+                            <?= isset($_COOKIE['senhaDoUsuario']) ? "chcked" : ""
+                                                                                                            ?>>
+
                             <label for="lembrar" class="custom-control-label">
                                 Lembrar de mim.
                             </label>
@@ -96,6 +89,13 @@
                         </p>
                     </div>
 
+
+                    <div class="form-group">
+                        <p class="text-center">Mostrar <a href="#" id="btnMostrar">
+                                Mostre-me!
+                            </a>
+                        </p>
+                    </div>
 
 
                 </form>
@@ -144,7 +144,7 @@
         <section class="row mt-5">
             <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaRegistro">
                 <h2 class="text-center mt-2">Registre-se aqui</h2>
-                <form action="#" method="post" class="p-2" id="formRegistro" placeholder="Nome completo">
+                <form action="#" method="post" class="p-2" id="formRegistro">
 
                     <div class="form-group">
                         <input type="text" name="nomeCompleto" id="nomeCompleto" class="form-control" placeholder="Nome completo" required minlength="6">
@@ -166,6 +166,11 @@
                     <div class="form-group">
 
                         <input type="password" name="senhaUsuarioConfirmar" id="senhaUsuarioConfirmar" class="form-control" placeholder="confirmar Senha" required minlength="6">
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="url" name="url2" id="url2" class="form-control" placeholder="URL Foto para Perfil" required minlength="6">
                     </div>
 
                     <div class="form-group mt-3">
@@ -202,6 +207,74 @@
         </section>
 
         <!-- Final do formulário de cadastro de novos usuários -->
+
+        <!-- INICIO MOSTRAR -->
+        <section class="row mt-5">
+            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaMostrar">
+                <h2 class="text-center mt-2">Mostrado</h2>
+                <form action="#" method="post" class="p-2" id="formMostrar">
+
+                    <div class="form-group">
+                        <input type="text" name="nomeCompleto" id="nomeCompleto" class="form-control" placeholder="Nome completo" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="emailUsuario" id="emailUsuario" class="form-control" placeholder="E-mail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" name="niver" id="niver" class="form-control" placeholder="Data de Aniversário" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="url" name="qualquer" id="qualquer" class="form-control" placeholder="URL Rede Social" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="url" name="urlImagem" id="urlImagem" class="form-control" placeholder="URL Imagem" required minlength="6">
+                    </div>
+                    <div class="form-group mt-4">
+
+                        <div class="form-group">
+                            <h5 class="mt-2"> Seu Estado:</h5>
+                            <select class="form-control" id="estado" name="estado">
+                                <option>SC</option>
+                                <option>PR</option>
+                                <option>RS</option>
+                                <option>SP</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <h5 class="mt-2">Sua Cidade:</h5>
+                            <select class="form-control" id="cidade" name="cidade">
+                                <option>Guabiruba</option>
+                                <option>Joinville</option>
+                                <option>Blumenau</option>
+                                <option>Itajaí</option>
+                                <option>Gaspar</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <input type="submit" value="Enviar" name="btnEnvio" id="btnEnvio" class="btn btn-primary btn-block">
+                        </div>
+                        <div class="form-group">
+                            <p class="text-center">
+                                <a href="#" id="btnJaRegistrado3">
+                                    Voltar
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+            </div>
+            </form>
+            </div>
+        </section>
+
+        <!-- FIM MOSTRAR  -->
 
     </main>
     <!-- Optional JavaScript -->
@@ -246,6 +319,17 @@
                 $("#caixaLogin").hide(); //ocultar
                 $("#caixaRegistro").show(); //Mostrar
             });
+
+            $("#btnMostrar").click(function() {
+                $("#caixaLogin").hide(); //ocultar
+                $("#caixaMostrar").show(); //Mostrar
+            });
+
+            $("#btnJaRegistrado3").click(function() {
+                $("#caixaMostrar").hide(); //ocultar
+                $("#caixaLogin").show(); //Mostrar
+            });
+
 
             $("#btnJaRegistrado").click(function() {
                 $("#caixaSenha").hide(); //ocultar
