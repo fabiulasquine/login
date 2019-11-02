@@ -1,6 +1,5 @@
 <?php
-//iniciando a sessão 
-
+//Iniciando a sessão
 session_start();
 
 // Conexão com o Banco de dados
@@ -26,6 +25,7 @@ if (isset($_POST['action'])) {
         $nomeCompleto = verificar_entrada($_POST['nomeCompleto']);
         $nomeDoUsuario = verificar_entrada($_POST['nomeDoUsuario']);
         $emailUsuario = verificar_entrada($_POST['emailUsuario']);
+        $foto = verificar_entrada($_POST['foto']);
         $senhaDoUsuario = verificar_entrada($_POST['senhaDoUsuario']);
         $senhaUsuarioConfirmar = verificar_entrada($_POST['senhaUsuarioConfirmar']);
         $dataCriado = date("Y-m-d"); //Data atual no formato Banco de dados.
@@ -43,8 +43,9 @@ if (isset($_POST['action'])) {
             echo "<p class='text-danger'>Senhas não conferem.</p>";
             exit();
         } else { //As senhas conferem, veridicar se o usuario ja existe no banco de dados
-            $sql = $connect->prepare("SELECT nomeUsuario, EmailUsuario 
-            FROM usuario WHERE nomeUsuario = ? OR emailUsuario = ?");
+            $sql = $connect->prepare("SELECT nomeUsuario,
+            emailUsuario FROM usuario WHERE nomeUsuario = ? OR
+            emailUsuario = ?");
             $sql->bind_param("ss", $nomeDoUsuario, $emailUsuario);
             $sql->execute();
             $resultado = $sql->get_result();
@@ -52,23 +53,18 @@ if (isset($_POST['action'])) {
 
 
             //Verificando a existência de usuário no banco
-            if ($linha['nomeUsuario'] == $nomeDoUsuario) {
-                echo "<p class='text-danger'>Usuário indisponível, tente outro!</p>";
+            if ($linha['nomeDoUsuario'] == $nomeDoUsuario) {
+                echo "<p class='text-danger'>Usuário indisponível 123 $nomeDoUsuario, tente outro!</p>";
             } elseif ($linha['emailUsuario'] == $emailUsuario) {
                 echo "<p class='text-danger'>E-mail indisponível, tente outro!</p>";
             } else {
                 //Usuario pode ser cadastrado no banco de dados.
-                $sql = $connect->prepare("INSERT into usuario (nomeUsuario, 
-                nomeCompleto, emailUsuario, senhaDoUsuario, dataCriado) 
-                values(?, ?, ?, ?, ?)");
-                $sql->bind_param(
-                    "sssss",
-                    $nomeDoUsuario,
-                    $nomeCompleto,
-                    $emailUsuario,
-                    $senhaCodificada,
-                    $dataCriado
-                );
+                $sql = $connect->prepare("INSERT into usuario 
+                (nomeUsuario, nomeCompleto, foto, emailUsuario, 
+                senhaDoUsuario, dataCriado) values(?, ?, ?, ?, ?, ?)");
+                $sql->bind_param("ssssss", $nomeDoUsuario, 
+                $nomeCompleto, $foto, $emailUsuario, 
+                $senhaCodificada, $dataCriado);
                 if ($sql->execute()) {
                     echo "<p class='text-success'>Usuário cadastrado com sucesso!</p>";
                 } else {
@@ -78,12 +74,12 @@ if (isset($_POST['action'])) {
             }
         }
     } else if ($_POST['action'] == 'login') {
-
-        $nomeUsuario  = verificar_entrada($_POST['nomeUsuario']);
+        $nomeUsuario = verificar_entrada($_POST['nomeUsuario']);
         $senhaUsuario = verificar_entrada($_POST['senhaUsuario']);
-        $senha = sha1($senhaUsuario); //Senha codificada
+        $senha = sha1($senhaUsuario); // Senha codificada
 
-        $sql = $connect->prepare("SELECT * FROM usuario WHERE senhaDoUsuario = ? AND nomeUsuario = ?");
+        $sql = $connect->prepare("SELECT * FROM usuario WHERE 
+        senhaDoUsuario = ? AND nomeUsuario = ?");
         $sql->bind_param("ss", $senha, $nomeUsuario);
 
         $sql->execute();
@@ -92,17 +88,17 @@ if (isset($_POST['action'])) {
 
         if ($busca != null) {
             $_SESSION['nomeDoUsuario'] = $nomeUsuario;
+
             if (!empty($_POST['lembrar'])) {
-                //Se lembrar não estiver vazio!
+                //se lembrar não estiver vazio!
                 //ou seja, a pessoa quer ser lembrada!
                 setcookie("nomeDoUsuario", $nomeUsuario, time() + (60 * 60 * 24 * 30));
                 setcookie("senhaDoUsuario", $senhaUsuario, time() + (60 * 60 * 24 * 30));
             } else {
-                //A pessoa não quer ser lembrada 
+                // A pessoa não quer ser lembrada
                 setcookie("nomeDoUsuario", "");
                 setcookie("senhaDoUsuario", "");
             }
-
             echo "ok";
         } else {
             echo "<p class='text-danger'>";

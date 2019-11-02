@@ -170,7 +170,7 @@
 
 
                     <div class="form-group">
-                        <input type="url" name="url2" id="url2" class="form-control" placeholder="URL Foto para Perfil" required minlength="6">
+                        <input type="url" name="foto" id="foto" class="form-control" placeholder="URL Foto para Perfil" required minlength="6">
                     </div>
 
                     <div class="form-group mt-3">

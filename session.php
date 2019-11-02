@@ -10,15 +10,13 @@ if(isset($_SESSION['nomeDoUsuario'])){
     $sql->execute();
     $resultado = $sql->get_result();
     $linha = $resultado->fetch_array(MYSQLI_ASSOC);
-
     $nomeDoUsuario = $linha['nomeUsuario'];
     $nomeCompleto  = $linha['nomeCompleto'];
     $emailUsuario  = $linha['emailUsuario'];
+    $foto          = $linha['foto'];
     $dataCriado    = $linha['dataCriado'];
-
     //conversão de data
     $dataCriado = date('d/m/Y', strtotime($dataCriado));
-
 }else{
     //se não estiver logado, redirecionar para o index
     header("location: index.php");
