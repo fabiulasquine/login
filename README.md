@@ -4,6 +4,9 @@
 # aula10 - 18/11/2019
 
 # aula09 - 22/10/2019
+- Autenticação do usuário completa
+- Permissão de navegação através da SESSÃO
+- Lembrar senha e usuário com COOKIES
 
 # aula08 - 21/10/2019
 - Autenticação do usuário e permissão de acesso ao perfil.com
