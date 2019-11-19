@@ -12,12 +12,12 @@ require_once "session.php";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Página de Perfil</title>
+    <title> Perfil</title>
 </head>
 
 <body>
     <!-- Barra de navegação -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
         <a class="navbar-brand" href="#">Fabiula Eduarda Squine</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@ require_once "session.php";
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Bem Vindo!</h1>
-            <h2 class="display-2 text-center bg-info text-light rounded p-2"><?= $nomeCompleto ?></h2>
+            <h2 class="display-2 text-center bg-danger text-light rounded p-2"><?= $nomeCompleto ?></h2>
             <div class="row">
                 <div class="col-4">
                     <img src="<?= $foto?>" width="300px" alt="foto de perfil">
